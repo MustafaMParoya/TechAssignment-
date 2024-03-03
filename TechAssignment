@@ -8,50 +8,53 @@ class TechAssignment
 {
     static void Main()
     {
-        Console.WriteLine("Enter the name of the CSV file:");
+        Console.WriteLine("Please Enter the name of the CSV file:");
         string fileName = Console.ReadLine();
 
         string filePath = $"{fileName}.csv";
 
-        if (File.Exists(filePath))
+        if (File.Exists(filePath)) 
+//checks to see if exists in directory 
         {
             List<string> validEmails = new List<string>();
             List<string> invalidEmails = new List<string>();
 
             try
             {
-                // Read all lines from the CSV file
+                // Read all lines from the CSV file assuming they contain an email 
                 string[] lines = File.ReadAllLines(filePath);
 
-                // Assuming each line contains an email address
+                // Assuming each line contains an email address and the Name 
+
                 foreach (string line in lines)
                 {
-                    string email = line.Trim();
+                    string email = line.Trim(); //format 
 
                     if (IsValidEmail(email))
                     {
-                        validEmails.Add(email);
+                        validEmails.Add(email); //valid 
                     }
                     else
                     {
-                        invalidEmails.Add(email);
+                        invalidEmails.Add(email); //invalid emails 
                     }
                 }
 
                 Console.WriteLine("Valid Email Addresses:");
                 foreach (string validEmail in validEmails)
                 {
-                    Console.WriteLine(validEmail);
+                    Console.WriteLine(validEmail); 
+//outputs the list of valid emails 
                 }
 
                 Console.WriteLine("\nInvalid Email Addresses:");
                 foreach (string invalidEmail in invalidEmails)
                 {
-                    Console.WriteLine(invalidEmail);
+                    Console.WriteLine(invalidEmail); //invalids 
                 }
             }
             catch (Exception ex)
-            {
+            { //HANDLING ERRORS 
                 Console.WriteLine($"Error reading the file: {ex.Message}");
             }
         }
